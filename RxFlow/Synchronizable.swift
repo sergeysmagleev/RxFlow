@@ -12,7 +12,7 @@
 /// Provides a function to prevent concurrent block execution
 public protocol Synchronizable {}
 
-extension Synchronizable {
+extension Synchronizable where Self: AnyObject {
     func synchronized<T>( _ action: () -> T) -> T {
         objc_sync_enter(self)
         let result = action()
